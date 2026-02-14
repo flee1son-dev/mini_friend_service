@@ -1,0 +1,9 @@
+.venv/
+.env
+__pycache__/
+.vscode/
+.unittest_cache
+dist/
+build/
+.DS_Store
+Thumbs.db

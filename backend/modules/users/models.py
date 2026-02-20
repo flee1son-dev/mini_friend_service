@@ -1,4 +1,4 @@
-from sqlalchemy.orm import mapped_column, Mapped
+from sqlalchemy.orm import mapped_column, Mapped, relationship
 from sqlalchemy import Date
 from backend.core.database import Base
 from datetime import date
@@ -17,6 +17,20 @@ class User(Base):
     password: Mapped[str] = mapped_column(nullable=False)
 
     is_active: Mapped[bool] = mapped_column(nullable=False)
+
+    sent_friendships: Mapped[list["Friendship"]] = relationship(
+        "Friendship",
+        foreign_keys="[Friendship.requester_id]",
+        back_populates="requester",
+        cascade="all, delete_orphan"
+    )
+
+    received_friendships: Mapped[list["Friendship"]] = relationship(
+        "Friendship",
+        foreign_keys="[Friendship.addressee_id]",
+        back_populates="addressee",
+        cascade="all, delete_orphan"
+    )
 
 
 

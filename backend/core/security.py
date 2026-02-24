@@ -9,6 +9,7 @@ from backend.core.config import settings
 from backend.core import exceptions
 from backend.core.database import get_db
 from backend.modules.users import models, schemas
+from backend.modules.auth.models import TokenBlackList
 import jwt
 import uuid
 
@@ -81,7 +82,7 @@ def create_jwt(
     )
 
 #GENERAL
-def create_access_jwt(user: schemas.UserResponse) -> str:
+def create_access_jwt(user: models.User) -> str:
     jwt_payload = {
         "sub": str(user.id),
         "name": user.first_name,
@@ -97,11 +98,12 @@ def create_access_jwt(user: schemas.UserResponse) -> str:
     )
 
 
-def create_refresh_jwt(user: schemas.UserBase):
+def create_refresh_jwt(user: models.User):
     jwt_payload = {
         "sub": str(user.id),
         "name": user.first_name,
-        "email": user.email
+        "email": user.email,
+        "jti": str(uuid.uuid4())
     }
 
     return create_jwt(
@@ -129,9 +131,11 @@ def get_current_user(
 
     if not user_id or not jti:
         raise exceptions.CredentialsException()
-    """
-    blacklisted = db.
-    """
+    
+    blacklisted = db.execute(select(TokenBlackList).where(TokenBlackList.jti == jti)).scalar_one_or_none()
+
+    if blacklisted:
+        raise exceptions.CredentialsException()
     
     user = db.execute(
         select(models.User).where(models.User.id == int(user_id))

@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field, EmailStr
+from backend.modules.users.schemas import UserCreate
 
 
 class TokenResponse(BaseModel):
@@ -8,6 +9,10 @@ class TokenResponse(BaseModel):
 class LoginRequest(BaseModel):
     email: EmailStr = Field(..., description="User's email")
     password: str = Field(..., description="User's password")
+
+class RegisterRequest(UserCreate):
+    pass
+
 
 #logout
 class LogoutResponse(BaseModel):

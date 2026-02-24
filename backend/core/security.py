@@ -4,13 +4,12 @@ from sqlalchemy.orm import Session
 from sqlalchemy import select
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends
-from jose import JWTError
+from jose import jwt, JWTError
 from backend.core.config import settings
 from backend.core import exceptions
 from backend.core.database import get_db
 from backend.modules.users import models, schemas
 from backend.modules.auth.models import TokenBlackList
-import jwt
 import uuid
 
 """PASSWORDS"""

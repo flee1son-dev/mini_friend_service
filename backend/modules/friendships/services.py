@@ -65,9 +65,14 @@ def create_friend_request(
 
 def accept_friend_request(
         friendship_id: int,
+        current_user: UserModels.User,
         db: Session
 ) -> FriendshipModels.Friendship:
     friendship = get_friendship(friendship_id=friendship_id, db=db)
+    if current_user.id != friendship.addressee_id:
+        raise exceptions.PermissionDeniedException(
+            detail="You are not allowed to accept this friendship request"
+        )
      
     if friendship.status == FriendshipModels.FriendshipStatus.accepted:
         raise exceptions.FriendRequestAlreadyAccepted()
@@ -86,10 +91,15 @@ def accept_friend_request(
 
 def reject_friend_request(
         friendship_id: int,
+        current_user: UserModels.User,
         db: Session
 ) -> FriendshipModels.Friendship:
     friendship = get_friendship(friendship_id=friendship_id, db=db)
-
+    if current_user.id != friendship.addressee_id:
+        raise exceptions.PermissionDeniedException(
+            detail="You are not allowed to reject this friendship request"
+        )
+    
     if friendship.status == FriendshipModels.FriendshipStatus.rejected:
         raise exceptions.FriendRequestAlreadyRejected()
     
@@ -107,9 +117,14 @@ def reject_friend_request(
 
 def remove_friendship(
         friendship_id: int,
+        current_user: UserModels.User,
         db: Session
 ) -> None:
     friendship = get_friendship(friendship_id=friendship_id, db=db)
+    if current_user.id != friendship.requester_id and current_user.id != friendship.addressee_id:
+        raise exceptions.PermissionDeniedException(
+            detail="You are not allowed to remove this friendship request"
+        )
 
     
     db.delete(friendship)

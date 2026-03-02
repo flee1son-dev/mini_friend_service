@@ -46,7 +46,6 @@ def update_profile(
 
 
 def delete_user(
-        user_id: int,
         user_delete_data: schemas.UserDelete,
         current_user: models.User,
         db: Session
@@ -107,7 +106,7 @@ def get_profiles_by_first_name(
         first_name: str,
         current_user: models.User,
         db: Session
-):
+) -> List[models.User]:
     users = db.execute(
         select(models.User).where(
             models.User.first_name == first_name,

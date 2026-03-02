@@ -31,6 +31,13 @@ class UserInactive(AppException):
             detail="Account deleted"
         )
 
+class PermissionDeniedException(AppException):
+    def __init__(self, detail: str = "You do not have permission to perform this action"):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=detail
+        )
+
 
 #User exceptions
 class UserNotFound(AppException):

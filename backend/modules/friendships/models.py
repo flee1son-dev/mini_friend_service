@@ -10,6 +10,7 @@ class FriendshipStatus(PyEnum):
     rejected = "rejected"
 
 class Friendship(Base):
+    __tablename__ = "friendships"
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
 
     requester_id: Mapped[int] = mapped_column(ForeignKey("user.id", ondelete="CASCADE"), nullable=False)

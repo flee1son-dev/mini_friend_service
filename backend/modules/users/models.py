@@ -4,6 +4,7 @@ from backend.core.database import Base
 from datetime import date
 
 class User(Base):
+    __tablename__ = "users"
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
 
     first_name: Mapped[str] = mapped_column(nullable=False)

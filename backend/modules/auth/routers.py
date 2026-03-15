@@ -7,7 +7,7 @@ from backend.modules.users import schemas as userschemas
 from backend.core.security import oauth2scheme
 
 
-router = APIRouter(prefix="auth", tags=["Auth"])
+router = APIRouter(prefix="/auth", tags=["Auth"])
 
 
 #register user

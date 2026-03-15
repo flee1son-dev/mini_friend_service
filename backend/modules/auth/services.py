@@ -22,6 +22,9 @@ def register_user(
     if existing_user:
         raise exceptions.UserEmailAlreadyExists()
     
+    if user_data.password != user_data.password_repeat:
+        raise exceptions.ValidationError('Password do not match')
+    
     hashed_pwd = security.hash_password(user_data.password)
 
     db_user = usermodels.User(
@@ -29,7 +32,8 @@ def register_user(
         first_name = user_data.first_name,
         last_name = user_data.last_name,
         password = hashed_pwd,
-        birth_date = user_data.birth_date
+        birth_date = user_data.birth_date,
+        is_active = True
     )
 
     db.add(db_user)

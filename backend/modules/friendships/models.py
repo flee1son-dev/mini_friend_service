@@ -13,9 +13,9 @@ class Friendship(Base):
     __tablename__ = "friendships"
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
 
-    requester_id: Mapped[int] = mapped_column(ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
+    requester_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
 
-    addressee_id: Mapped[int] = mapped_column(ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
+    addressee_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
 
     status: Mapped[FriendshipStatus] = mapped_column(
         SQLAEnum(FriendshipStatus, name="friendship_status"),

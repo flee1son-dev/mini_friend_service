@@ -24,8 +24,8 @@ class FriendshipCreate(FriendshipBase):
 
 class FriendshipResponse(FriendshipBase):
     id: int = Field(..., description="Friendship's primary key")
-    requester: Optional[UserResponse] = Field(..., default=None)
-    addressee: Optional[UserResponse] = Field(..., default=None)
+    requester: Optional[UserResponse] = None
+    addressee: Optional[UserResponse] = None
 
     model_config = {"from_attributes": True}
 

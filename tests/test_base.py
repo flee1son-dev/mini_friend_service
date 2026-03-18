@@ -1,5 +1,5 @@
 import unittest
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from backend.core.database import Base, get_db
 from backend.main import app
@@ -32,6 +32,12 @@ class BaseTestCase(unittest.TestCase):
         """Create a new session before each test"""
         self.db = TestingSessionLocal()
 
+        self.db.execute(text("DELETE FROM users"))
+        self.db.execute(text("DELETE FROM friendships"))
+        self.db.commit()
+
+
+        
     def tearDown(self):
         """Roll back changes after each test"""
         self.db.rollback()

@@ -1,5 +1,6 @@
 import unittest
 from sqlalchemy import create_engine, text
+from sqlalchemy.pool import StaticPool
 from sqlalchemy.orm import sessionmaker
 from backend.core.database import Base, get_db
 from backend.main import app
@@ -10,7 +11,8 @@ DATABASE_URL = "sqlite:///:memory:"
 
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False}
+    connect_args={"check_same_thread": False},
+    poolclass=StaticPool
 )
 
 TestingSessionLocal = sessionmaker(autoflush=False, autocommit=False, bind=engine)
@@ -26,6 +28,7 @@ class BaseTestCase(unittest.TestCase):
     def tearDownClass(cls):
         """delete all tables after testing"""
         Base.metadata.drop_all(engine)
+        engine.dispose()
 
 
     def setUp(self):

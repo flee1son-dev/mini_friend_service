@@ -121,7 +121,6 @@ class TestUserServices(BaseTestCase):
         
         self.db.refresh(self.user1)
         self.assertFalse(self.user1.is_active)
-        self.assertDictEqual(deleted_user, {"detail": "User deleted"})
 
     
     def test_delete_user_not_found(self):

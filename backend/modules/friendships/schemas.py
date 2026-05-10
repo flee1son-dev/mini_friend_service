@@ -7,15 +7,9 @@ from backend.core.exceptions import ValidationError
 
 
 class FriendshipBase(BaseModel):
-    requester_id: int = Field(..., description="Requester's primary key")
     addressee_id: int = Field(..., description="Addressee's primary key")
     status: FriendshipStatus = Field(default=FriendshipStatus.pending, description="friend request status")
 
-    @model_validator(mode="before")
-    def check_requester_addressee(cls, values: dict) -> dict:
-        if values.get("requester_id") == values.get("addressee_id"):
-            raise ValueError("Requester and addressee can't be same user")
-        return values
 
 
 class FriendshipCreate(FriendshipBase):

@@ -66,7 +66,7 @@ class UserEmailAlreadyExists(AppException):
 class ValidationError(AppException):
     def __init__(self, detail: str):
         super().__init__(
-            status_code=status.HTTP_409_CONFLICT,
+            status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail=detail
         )
 

@@ -49,7 +49,7 @@ def delete_user(
         user_delete_data: schemas.UserDelete,
         current_user: models.User,
         db: Session
-) -> dict:
+) -> models.User:
     db_user = current_user
 
     if not db_user:
@@ -63,7 +63,7 @@ def delete_user(
     db.commit()
     db.refresh(db_user)
 
-    return {"detail": "User deleted"}
+    return db_user
 
 
 def get_my_profile(

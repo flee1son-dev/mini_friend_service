@@ -70,7 +70,7 @@ def update_profile(
 
 
 #Delete my profile
-@router.delete("/me/delete", response_model=schemas.UserResponse, status_code=status.HTTP_200_OK)
+@router.put("/me/delete", response_model=schemas.UserResponse, status_code=status.HTTP_200_OK)
 def delete_profile(
         delete_data: schemas.UserDelete,
         current_user: models.User = Depends(get_current_user),

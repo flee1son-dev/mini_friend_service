@@ -148,8 +148,8 @@ def get_friend_requests(
 def get_friends(
         current_user: UserModels.User,
         db: Session
-) -> List[FriendshipModels.Friendship]:
-    friend_list = db.execute(
+) -> List[UserModels.User]:
+    friendships= db.execute(
         select(FriendshipModels.Friendship).where(
             or_(
                 FriendshipModels.Friendship.addressee_id == current_user.id,
@@ -159,6 +159,14 @@ def get_friends(
         )
     ).scalars().all()
 
-    return friend_list
+    friends = []
+    
+    for friendship in friendships:
+        if friendship.requester_id == current_user.id:
+            friends.append(friendship.addressee)
+        else:
+            friends.append(friendship.requester)
+
+    return friends
     
 

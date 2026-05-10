@@ -54,7 +54,7 @@ def logout(
     token: str = Depends(oauth2scheme),
     db: Session = Depends(get_db)
 ):
-    BackgroundTasks.add_task(services.cleanup_token_blacklist)
+    BackgroundTasks().add_task(services.cleanup_token_blacklist, db)
     return services.logout_user(
         request=request,
         response=response,

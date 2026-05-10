@@ -62,7 +62,7 @@ def remove_friendship(
     )
 
 
-@router.get("/requests", response_model=List[schemas.UserResponse], status_code=status.HTTP_200_OK)
+@router.get("/requests", response_model=List[schemas.FriendshipResponse], status_code=status.HTTP_200_OK)
 def get_requests(
     current_user: UserModels.User = Depends(get_current_user),
     db: Session = Depends(get_db)

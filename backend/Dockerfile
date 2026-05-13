@@ -3,7 +3,7 @@ FROM python:3.13-slim
 WORKDIR /backend
 
 ENV PYTHONUNBUFFERED=1
-ENV PYTHONPATH=/backend
+
 
 COPY . .
 

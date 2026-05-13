@@ -1,9 +1,9 @@
 from pydantic import BaseModel, Field, model_validator
 from enum import Enum as PyEnum
 from typing import Optional
-from backend.modules.friendships.models import FriendshipStatus
-from backend.modules.users.schemas import UserResponse
-from backend.core.exceptions import ValidationError
+from modules.friendships.models import FriendshipStatus
+from modules.users.schemas import UserResponse
+from core.exceptions import ValidationError
 
 
 class FriendshipBase(BaseModel):

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, status, Depends
 from sqlalchemy.orm import Session
-from backend.core import exceptions
-from backend.core.security import get_current_user
-from backend.core.database import get_db
-from backend.modules.users import schemas, models, services
+from core import exceptions
+from core.security import get_current_user
+from core.database import get_db
+from modules.users import schemas, models, services
 from typing import List
 
 router = APIRouter(prefix="/users", tags=["User"])

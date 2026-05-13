@@ -1,6 +1,6 @@
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from sqlalchemy import Date
-from backend.core.database import Base
+from core.database import Base
 from datetime import date
 
 class User(Base):

@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.core.database import Base, engine
-from backend.modules.auth.routers import router as auth_router
-from backend.modules.users.routers import router as users_router
-from backend.modules.friendships.routers import router as friendships_router
+from core.database import Base, engine
+from modules.auth.routers import router as auth_router
+from modules.users.routers import router as users_router
+from modules.friendships.routers import router as friendships_router
 
 
 Base.metadata.create_all(engine)

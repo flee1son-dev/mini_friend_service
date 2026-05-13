@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
-from backend.core import exceptions
-from backend.core.database import get_db
-from backend.core.security import get_current_user
-from backend.modules.friendships import schemas, services
-from backend.modules.users import models as UserModels
+from core import exceptions
+from core.database import get_db
+from core.security import get_current_user
+from modules.friendships import schemas, services
+from modules.users import models as UserModels
 from typing import List
 
 router = APIRouter(prefix="/friendships", tags=["Friendships"])

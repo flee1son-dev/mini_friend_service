@@ -1,8 +1,8 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from core import exceptions
-from core.security import hash_password
-from modules.users import models, schemas
+from backend.core import exceptions
+from backend.core.security import hash_password
+from backend.modules.users import models, schemas
 from typing import List
 
 

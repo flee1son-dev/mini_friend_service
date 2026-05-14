@@ -1,7 +1,7 @@
 from sqlalchemy import ForeignKey, Enum as SQLAEnum
 from sqlalchemy.orm import mapped_column, Mapped, relationship
-from core.database import Base
-from modules.users.models import User
+from backend.core.database import Base
+from backend.modules.users.models import User
 from enum import Enum as PyEnum
 
 class FriendshipStatus(PyEnum):

@@ -1,7 +1,7 @@
-from core import security, exceptions
-from core.config import settings
-from modules.users import models as usermodels
-from modules.auth import schemas, models as authmodels
+from backend.core import security, exceptions
+from backend.core.config import settings
+from backend.modules.users import models as usermodels
+from backend.modules.auth import schemas, models as authmodels
 from sqlalchemy import select, text
 from sqlalchemy.orm import Session
 from fastapi import Request, Response

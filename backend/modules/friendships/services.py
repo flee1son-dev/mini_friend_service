@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import select, or_, and_
-from modules.friendships import models as FriendshipModels
-from modules.users import models as UserModels
-from core import exceptions
+from backend.modules.friendships import models as FriendshipModels
+from backend.modules.users import models as UserModels
+from backend.core import exceptions
 from typing import List
 
 

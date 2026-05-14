@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field, EmailStr
-from modules.users.schemas import UserCreate
+from backend.modules.users.schemas import UserCreate
 
 
 class TokenResponse(BaseModel):

@@ -35,8 +35,8 @@ class BaseTestCase(unittest.TestCase):
         """Create a new session before each test"""
         self.db = TestingSessionLocal()
 
-        self.db.execute(text("DELETE FROM users"))
         self.db.execute(text("DELETE FROM friendships"))
+        self.db.execute(text("DELETE FROM users"))
         self.db.commit()
 
 

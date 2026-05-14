@@ -1,4 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pathlib import Path
+
+BACKEND_DIR = Path(__file__).resolve().parents[1]
 
 class Settings(BaseSettings):
     DEBUG: bool = False
@@ -19,8 +22,8 @@ class Settings(BaseSettings):
     POSTGRES_HOST: str
 
     model_config = SettingsConfigDict(
-        env_file=".env",
-        env_file_encoding="utf-8"
+        env_file=str(BACKEND_DIR / ".env"),
+        env_file_encoding="utf-8",
     )
 
 

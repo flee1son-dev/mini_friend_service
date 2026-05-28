@@ -51,6 +51,7 @@ def refresh(
 def logout(
     request: Request,
     response: Response,
+    background_tasks: BackgroundTasks,
     token: str = Depends(oauth2scheme),
     db: Session = Depends(get_db)
 ):
